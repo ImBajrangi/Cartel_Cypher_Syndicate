@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBjyTuvk0BHtxl2GO2_AOV5D5NuyjrVIys",
-  authDomain: "cartel-cypher.firebaseapp.com",
-  projectId: "cartel-cypher",
-  storageBucket: "cartel-cypher.firebasestorage.app",
-  messagingSenderId: "418621481873",
-  appId: "1:418621481873:web:7a8e9aad9f3f493fe2f030",
-  measurementId: "G-BKFSN8M2RR"
+  apiKey: "AIzaSyA4YIIGBQL2uT3CoHbTdmd0N8fJAz_ZhYA",
+  authDomain: "cartelcypher-demo.firebaseapp.com",
+  projectId: "cartelcypher-demo",
+  storageBucket: "cartelcypher-demo.firebasestorage.app",
+  messagingSenderId: "573784135804",
+  appId: "1:573784135804:web:84c25dd6c79ddbff8fd1f9",
+  measurementId: "G-RSCMBTZXGB"
 };
 
 const app = initializeApp(firebaseConfig);
