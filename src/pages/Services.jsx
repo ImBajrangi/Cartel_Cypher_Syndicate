@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Send, Terminal, Shield, Eye, AlertTriangle, CheckCircle, User } from 'lucide-react';
+import { addRequest } from '../utils/db';
 
 const Services = () => {
   const [form, setForm] = useState({
@@ -12,11 +13,21 @@ const Services = () => {
   const [logs, setLogs] = useState([]);
   const [isTransmitting, setIsTransmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsTransmitting(true);
     setLogs([]);
     setSubmitted(false);
+
+    // Save request to Firebase
+    const savedRequest = await addRequest({
+      name: form.name,
+      contact: form.contact,
+      scope: `Primary Need: ${form.need.toUpperCase()}`,
+      tier: form.need === 'business' ? 'Securing Business' : form.need === 'vulnerability' ? 'Finding Vulnerabilities' : 'Mitigating Cybercrime',
+      details: form.details,
+      type: 'service'
+    });
 
     const logSequence = [
       '[i] Connecting to secure syndicate node relay...',
@@ -24,7 +35,7 @@ const Services = () => {
       '[+] Tunnel established. Encryption: ChaCha20-Poly1305.',
       '[i] Registering scoping parameters for: ' + form.need.toUpperCase() + '...',
       '[i] Encrypting client specifications...',
-      '[+] Transmission complete! Secure payload token: SEC-INIT-' + Math.floor(100000 + Math.random() * 900000),
+      `[+] Transmission complete! Secure payload token: ${savedRequest.requestId}`,
       '[+] PARAMETERS REGISTERED. Our operators will contact you shortly.'
     ];
 
